@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الناصر</string>
+    <string name="app_name_en">Al-Nasser</string>
+    
+    <!-- Splash Screen -->
+    <string name="loading">Loading…</string>
+    
+    <!-- Input Screen -->
+    <string name="enter_measurements">Enter Your Measurements</string>
+    <string name="height">Height (cm)</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="continue_btn">Continue</string>
+    
+    <!-- Mannequin Screen -->
+    <string name="your_mannequin">Your Virtual Mannequin</string>
+    <string name="add_mannequin">Add Mannequin</string>
+    <string name="remove_mannequin">Remove</string>
+    <string name="try_clothes">Try Clothes</string>
+    <string name="matching_outfits">Matching Outfits</string>
+    
+    <!-- Clothing -->
+    <string name="tops">Tops</string>
+    <string name="bottoms">Bottoms</string>
+    <string name="shoes">Shoes</string>
+    <string name="outfits">Outfits</string>
+    <string name="remove_item">Remove Item</string>
+    <string name="custom_made">This item will be custom-made for you</string>
+    <string name="estimated_cost">Estimated Cost: $%.2f</string>
+    
+    <!-- Suggestions -->
+    <string name="suggested_for_you">Suggested For You</string>
+    <string name="recommended_size">Recommended Size: %s</string>
+    
+    <!-- Controls -->
+    <string name="rotate_hint">Rotate to view from all angles</string>
+    <string name="zoom_hint">Pinch to zoom</string>
+    
+    <!-- Measurements -->
+    <string name="predicted_measurements">Predicted Measurements</string>
+    <string name="chest">Chest: %.1f cm</string>
+    <string name="waist">Waist: %.1f cm</string>
+    <string name="hips">Hips: %.1f cm</string>
+    <string name="arm_length">Arm Length: %.1f cm</string>
+    <string name="leg_length">Leg Length: %.1f cm</string>
+    <string name="shoulder_width">Shoulder Width: %.1f cm</string>
+</resources>

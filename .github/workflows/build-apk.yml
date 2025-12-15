@@ -1,0 +1,76 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Build debug APK
+      run: ./gradlew assembleDebug --stacktrace
+      
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: al-nasser-app
+        path: app/build/outputs/apk/debug/app-debug.apk
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        name: Al-Nasser App v1.0.${{ github.run_number }}
+        body: |
+          # تطبيق الناصر - Al-Nasser App
+          
+          تطبيق أندرويد للتجربة الافتراضية للملابس مع ذكاء اصطناعي
+          
+          ## المميزات
+          - توقع قياسات الجسم بالذكاء الاصطناعي
+          - عارضات أزياء ثلاثية الأبعاد متحركة
+          - تجربة الملابس الافتراضية
+          - دعم عدة عارضات في نفس الوقت
+          
+          ## التثبيت
+          1. حمّل ملف APK
+          2. افتح الملف على هاتفك الأندرويد
+          3. اسمح بالتثبيت من مصادر غير معروفة
+          4. اضغط "تثبيت"
+          
+          ## المتطلبات
+          - أندرويد 8.0 أو أحدث
+          - دعم OpenGL ES 3.0
+        files: app/build/outputs/apk/debug/app-debug.apk
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
